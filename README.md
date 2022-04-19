@@ -1,2 +1,2 @@
-# TR03-Tower-Defense-Game
+# TR03 Tower Defence Game
 A game made following a tutorial by Code Monkey.
