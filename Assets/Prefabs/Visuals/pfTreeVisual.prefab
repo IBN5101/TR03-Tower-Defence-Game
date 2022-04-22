@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2137381427654621959}
   - component: {fileID: 8007674068501373137}
+  - component: {fileID: 9192248358526124439}
   m_Layer: 0
   m_Name: TreeBushes_1
   m_TagString: Untagged
@@ -46,6 +47,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,6 +83,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9192248358526124439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471790222991265846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b0d569fe000ee4f93561611d38376e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnce: 1
+  positionOffsetY: -3.2
 --- !u!1 &766746179961913856
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,6 +142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9064450812318702635}
   - component: {fileID: 5899865323519720757}
+  - component: {fileID: 7494497651797478861}
   m_Layer: 0
   m_Name: TreeBushes_2
   m_TagString: Untagged
@@ -162,6 +179,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -197,6 +215,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7494497651797478861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724870052136919265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b0d569fe000ee4f93561611d38376e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnce: 1
+  positionOffsetY: -2.1
 --- !u!1 &6935567414290222296
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7883123605705503146}
   - component: {fileID: 9123379376543891443}
+  - component: {fileID: 3635808565622653446}
   m_Layer: 0
   m_Name: TreeBushes_4
   m_TagString: Untagged
@@ -243,6 +276,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -278,6 +312,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3635808565622653446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6935567414290222296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b0d569fe000ee4f93561611d38376e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnce: 1
+  positionOffsetY: -3.5
 --- !u!1 &7260127690804197385
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7107669108911837442}
   - component: {fileID: 7828525954310415181}
+  - component: {fileID: 982510980906593811}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -324,6 +373,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -359,6 +409,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &982510980906593811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7260127690804197385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b0d569fe000ee4f93561611d38376e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnce: 1
+  positionOffsetY: 0
 --- !u!1 &8976734756563553963
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5145177241056235975}
   - component: {fileID: 6719419960567876367}
+  - component: {fileID: 6192366789464954202}
   m_Layer: 0
   m_Name: TreeBushes_3
   m_TagString: Untagged
@@ -405,6 +470,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -440,3 +506,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6192366789464954202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976734756563553963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b0d569fe000ee4f93561611d38376e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnce: 1
+  positionOffsetY: -2
