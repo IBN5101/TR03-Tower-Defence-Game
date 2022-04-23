@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Gold
   m_EditorClassIdentifier: 
   nameString: Gold
+  nameShort: G
   sprite: {fileID: 21300000, guid: 8b744c47cb320b84889a7b8439a78bc2, type: 3}
+  colorHex: CFB130

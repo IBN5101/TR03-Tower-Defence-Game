@@ -24,3 +24,4 @@ MonoBehaviour:
   constructionResourceCostArray:
   - resourceType: {fileID: 11400000, guid: 09fd7899e4aa88e4993991caffb3bef4, type: 2}
     amount: 10
+  healthAmountMax: 100

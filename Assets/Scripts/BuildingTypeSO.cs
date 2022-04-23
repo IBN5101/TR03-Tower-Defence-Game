@@ -11,4 +11,20 @@ public class BuildingTypeSO : ScriptableObject
     public Sprite sprite;
     public float minConstructionRadius;
     public ResourceAmount[] constructionResourceCostArray;
+    public int healthAmountMax;
+
+    public string GetConstructionCostArrayString()
+    {
+        string str = "";
+        foreach (ResourceAmount resourceAmount in constructionResourceCostArray)
+        {
+            str += "<color=#" + resourceAmount.resourceType.colorHex + ">";
+            str += resourceAmount.resourceType.nameShort;
+            str += resourceAmount.amount;
+            str += "</color>";
+            str += " ";
+        }
+
+        return str;
+    }
 }

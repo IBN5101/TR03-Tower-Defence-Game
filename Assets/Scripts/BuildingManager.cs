@@ -16,6 +16,8 @@ public class BuildingManager : MonoBehaviour
         public BuildingTypeSO activeBuildingType;
     }
 
+    [SerializeField] private Building hqBuilding;
+
     private Camera mainCamera;
     private BuildingTypeListSO buildingTypeList;
     private BuildingTypeSO activeBuildingType;
@@ -36,13 +38,26 @@ public class BuildingManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            if (activeBuildingType && CanSpawnBuilding(activeBuildingType, UtilsClass.getMouseWorldPosition()))
+            if (activeBuildingType)
             {
-                if (ResourceManager.Instance.CanAfford(activeBuildingType.constructionResourceCostArray))
+                if (CanSpawnBuilding(activeBuildingType, UtilsClass.getMouseWorldPosition(), out string errorMessage))
                 {
-                    ResourceManager.Instance.SpendResources(activeBuildingType.constructionResourceCostArray);
-                    Instantiate(activeBuildingType.prefab, UtilsClass.getMouseWorldPosition(), Quaternion.identity);
+                    if (ResourceManager.Instance.CanAfford(activeBuildingType.constructionResourceCostArray))
+                    {
+                        ResourceManager.Instance.SpendResources(activeBuildingType.constructionResourceCostArray);
+                        Instantiate(activeBuildingType.prefab, UtilsClass.getMouseWorldPosition(), Quaternion.identity);
+                    }
+                    else
+                    {
+                        TooltipUI.Instance.Show("Cannot afford " + activeBuildingType.GetConstructionCostArrayString(), 
+                            new TooltipUI.TooltipTimer { timer = 2f });
+                    }
                 }
+                else
+                {
+                    TooltipUI.Instance.Show(errorMessage, new TooltipUI.TooltipTimer { timer = 2f });
+                }
+                
             }
         }
 
@@ -54,6 +69,12 @@ public class BuildingManager : MonoBehaviour
             SetActiveBuildingType(buildingTypeList.list[1]);
         if (Input.GetKeyDown(KeyCode.Alpha3))
             SetActiveBuildingType(buildingTypeList.list[2]);
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Vector3 enemySpawnPosition = UtilsClass.getMouseWorldPosition() + UtilsClass.getRandomDirection() * 5f;
+            Enemy.Create(enemySpawnPosition);
+        }
     }
 
     public BuildingTypeSO GetActiveBuildingType()
@@ -70,7 +91,7 @@ public class BuildingManager : MonoBehaviour
         );
     }
 
-    public bool CanSpawnBuilding(BuildingTypeSO buildingType, Vector3 position)
+    public bool CanSpawnBuilding(BuildingTypeSO buildingType, Vector3 position, out string errorMessage)
     {
         BoxCollider2D boxCollider2D = buildingType.prefab.GetComponent<BoxCollider2D>();
 
@@ -78,7 +99,11 @@ public class BuildingManager : MonoBehaviour
         collider2DArray = Physics2D.OverlapBoxAll(position + (Vector3)boxCollider2D.offset, boxCollider2D.size, 0);
         bool isAreaClear = (collider2DArray.Length == 0);
         if (!isAreaClear)
+        {
+            errorMessage = "Area is not clear!";
             return false;
+        }
+            
 
         // Buildings need to be a min distance from each other
         collider2DArray = Physics2D.OverlapCircleAll(position + (Vector3)boxCollider2D.offset, buildingType.minConstructionRadius);
@@ -87,7 +112,10 @@ public class BuildingManager : MonoBehaviour
             // Colliders inside the construction radius
             BuildingTypeHolder buildingTypeHolder = collider2D.GetComponent<BuildingTypeHolder>();
             if (buildingTypeHolder && buildingTypeHolder.buildingType == buildingType)
+            {
+                errorMessage = "Too close to another building of the same type!";
                 return false;
+            }
         }
 
         // Building can not be spawned if it is too far from constructed buildings
@@ -98,9 +126,17 @@ public class BuildingManager : MonoBehaviour
             // Colliders inside the construction radius
             BuildingTypeHolder buildingTypeHolder = collider2D.GetComponent<BuildingTypeHolder>();
             if (buildingTypeHolder)
+            {
+                errorMessage = "";
                 return true;
+            }
         }
-
+        errorMessage = "Too far from any other building!";
         return false;
+    }
+
+    public Building GetHQBuilding()
+    {
+        return hqBuilding;
     }
 }
