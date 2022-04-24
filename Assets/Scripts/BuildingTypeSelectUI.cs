@@ -108,6 +108,8 @@ public class BuildingTypeSelectUI : MonoBehaviour
         arrowBtn.Find("selected").gameObject.SetActive(false);
         foreach (BuildingTypeSO buildingType in buildingTypeList.list)
         {
+            if (ignoreBuildingTypeList.Contains(buildingType))
+                continue;
             Transform btnTransform = buildingTypeTransformDictionary[buildingType];
             // Hide selected
             btnTransform.Find("selected").gameObject.SetActive(false);

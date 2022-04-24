@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody2D rigidbody2d;
     private Transform targetTransform;
+    private HealthSystem healthSystem;
 
     private float lookForTargetTimer;
     private float lookForTargetTimerMax = 0.5f;
@@ -22,15 +23,23 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+
+        // Randomized so that batches of enemy spawned on the same frame
+        // don't look for targets at the same time
+        lookForTargetTimer = Random.Range(0f, lookForTargetTimerMax);
     }
 
     private void Start()
     {
         targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
 
-        // Randomized so that batches of enemy spawned on the same frame
-        // don't look for targets at the same time
-        lookForTargetTimer = Random.Range(0f, lookForTargetTimerMax);
+        healthSystem = GetComponent<HealthSystem>();
+        healthSystem.OnDied += Enemy_OnDied;
+    }
+
+    private void Enemy_OnDied(object sender, System.EventArgs e)
+    {
+        Destroy(gameObject);
     }
 
     private void Update()

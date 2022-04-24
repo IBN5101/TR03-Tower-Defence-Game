@@ -11,6 +11,8 @@ public class ResourceManager : MonoBehaviour
     // Events
     public event EventHandler OnResourceAmountChanged;
 
+    [SerializeField] private List<ResourceAmount> startingResourceAmountList;
+
     private Dictionary<ResourceTypeSO, int> resourceAmountDictionary;
 
     private void Awake()
@@ -26,8 +28,11 @@ public class ResourceManager : MonoBehaviour
             resourceAmountDictionary[resourceType] = 0;
         }
 
-        // Testing
-        //TestResourceAmountDictionary();
+        // Staring amount
+        foreach (ResourceAmount resourceAmount in startingResourceAmountList)
+        {
+            AddResource(resourceAmount.resourceType, resourceAmount.amount);
+        }
     }
 
     private void Update()
