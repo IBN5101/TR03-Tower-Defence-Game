@@ -35,11 +35,6 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        
-    }
-
     public int GetResourceAmount(ResourceTypeSO resourceType)
     {
         return resourceAmountDictionary[resourceType];
@@ -66,16 +61,16 @@ public class ResourceManager : MonoBehaviour
         {
             if (GetResourceAmount(resourceAmount.resourceType) >= resourceAmount.amount)
             {
-                // Can afford
+                // => Can afford
             }
             else
             {
-                // Can NOT afford
+                // => Can NOT afford
                 return false;
             }
         }
 
-        // Can afford all
+        // => Can afford all
         return true;
     }
 
@@ -85,5 +80,7 @@ public class ResourceManager : MonoBehaviour
         {
             resourceAmountDictionary[resourceAmount.resourceType] -= resourceAmount.amount;
         }
+
+        OnResourceAmountChanged?.Invoke(this, EventArgs.Empty);
     }
 }

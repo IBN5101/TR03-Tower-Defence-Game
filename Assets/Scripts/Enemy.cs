@@ -31,14 +31,24 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
-
+        if (BuildingManager.Instance.GetHQBuilding())
+        {
+            targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
+        }
+        
         healthSystem = GetComponent<HealthSystem>();
+        healthSystem.OnDamaged += Enemy_OnDamaged;
         healthSystem.OnDied += Enemy_OnDied;
+    }
+
+    private void Enemy_OnDamaged(object sender, System.EventArgs e)
+    {
+        SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyHit);
     }
 
     private void Enemy_OnDied(object sender, System.EventArgs e)
     {
+        SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
         Destroy(gameObject);
     }
 
@@ -119,7 +129,10 @@ public class Enemy : MonoBehaviour
         if (targetTransform == null)
         {
             // => No target within range
-            targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
+            if (BuildingManager.Instance.GetHQBuilding())
+            {
+                targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
+            }
         }
     }
 }
