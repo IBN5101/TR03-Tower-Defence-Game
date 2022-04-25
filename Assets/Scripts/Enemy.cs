@@ -6,8 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public static Enemy Create(Vector3 position)
     {
-        Transform enemyPrefab = Resources.Load<Transform>("pf_Enemy");
-        Transform enemyTransform = Instantiate(enemyPrefab, position, Quaternion.identity);
+        Transform enemyTransform = Instantiate(GameAssets.Instance.pf_Enemy, position, Quaternion.identity);
         Enemy enemy = enemyTransform.GetComponent<Enemy>();
 
         return enemy;
@@ -44,11 +43,16 @@ public class Enemy : MonoBehaviour
     private void Enemy_OnDamaged(object sender, System.EventArgs e)
     {
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyHit);
+        CinemachineShake.Instance.ShakeCamera(3f, .1f);
+        ChromaticAberrationEffect.Instance.SetWeight(.5f);
     }
 
     private void Enemy_OnDied(object sender, System.EventArgs e)
     {
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
+        CinemachineShake.Instance.ShakeCamera(4f, .15f);
+        ChromaticAberrationEffect.Instance.SetWeight(.5f);
+        Instantiate(GameAssets.Instance.pf_EnemyDieParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
@@ -92,7 +96,8 @@ public class Enemy : MonoBehaviour
             // => Collided with a building!
             HealthSystem healthSystem = building.GetComponent<HealthSystem>();
             healthSystem.Damage(10);
-            Destroy(gameObject);
+            // To trigger OnDeath event
+            this.healthSystem.Damage(100);
         }
     }
 

@@ -70,14 +70,18 @@ public class BuildingManager : MonoBehaviour
             }
         }
 
-        // Changes building type
-        // Temporary solution
+        // Changes building type using keyboard
+        // Temporary solution: Hard code = bad
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            SetActiveBuildingType(buildingTypeList.list[0]);
+            SetActiveBuildingType(buildingTypeList.list[0]); // WoodHarvester
         if (Input.GetKeyDown(KeyCode.Alpha2))
-            SetActiveBuildingType(buildingTypeList.list[1]);
+            SetActiveBuildingType(buildingTypeList.list[1]); // StoneHarvester
         if (Input.GetKeyDown(KeyCode.Alpha3))
-            SetActiveBuildingType(buildingTypeList.list[2]);
+            SetActiveBuildingType(buildingTypeList.list[2]); // GoldHarvester
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            SetActiveBuildingType(buildingTypeList.list[4]); // Tower
+        if (Input.GetKeyDown(KeyCode.Space))
+            SetActiveBuildingType(null);
     }
 
     public BuildingTypeSO GetActiveBuildingType()
@@ -117,6 +121,19 @@ public class BuildingManager : MonoBehaviour
             if (buildingTypeHolder && buildingTypeHolder.buildingType == buildingType)
             {
                 errorMessage = "Too close to another building of the same type!";
+                return false;
+            }
+        }
+
+        // Building need to have at least 1 resource node of same type
+        if (buildingType.hasResourceGeneratorData)
+        {
+            ResourceGeneratorData resourceGeneratorData = buildingType.resourceGeneratorData;
+            int nearbyResourceAmount = ResourceGenerator.GetNearbyResourceAmount(resourceGeneratorData, position);
+
+            if (nearbyResourceAmount == 0)
+            {
+                errorMessage = "There's no resource nodes nearby.";
                 return false;
             }
         }

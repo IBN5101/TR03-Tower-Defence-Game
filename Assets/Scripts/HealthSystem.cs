@@ -6,6 +6,7 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     // Events
+    public event EventHandler OnHealthAmountMaxChanged;
     public event EventHandler OnDamaged;
     public event EventHandler OnHealed;
     public event EventHandler OnDied;
@@ -61,6 +62,8 @@ public class HealthSystem : MonoBehaviour
         healthAmountMax = amount;
         if (updateHealthAmount)
             healthAmount = healthAmountMax;
+
+        OnHealthAmountMaxChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public int GetHealthAmount()

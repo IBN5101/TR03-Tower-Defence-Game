@@ -9,9 +9,10 @@ public class Tower : MonoBehaviour
     private Enemy targetEnemy;
 
     private float lookForTargetTimer;
-    private float lookForTargetTimerMax = 0.5f;
+    [SerializeField] private float lookForTargetTimerMax = 0.5f;
     private float shootTimer;
     [SerializeField] private float shootTimerMax = 1f;
+    [SerializeField] private float targetMaxRadius = 20f;
 
     private void Awake()
     {
@@ -49,7 +50,6 @@ public class Tower : MonoBehaviour
 
     private void LookForTargets()
     {
-        float targetMaxRadius = 20f;
         Collider2D[] collider2DArray = Physics2D.OverlapCircleAll(transform.position, targetMaxRadius);
 
         foreach (Collider2D collider2D in collider2DArray)
